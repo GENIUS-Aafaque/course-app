@@ -50,10 +50,10 @@ If you have a feature you'd like to see implemented, please open an issue with a
 
 ## Code of Conduct
 
-By participating in this project, you agree to abide by our [Code of Conduct](CODE_OF_CONDUCT.md). Please report any unacceptable behavior to [maintainer-email@example.com](mailto:maintainer-email@example.com).
+By participating in this project, you agree to abide by our [Code of Conduct](CODE_OF_CONDUCT.md). Please report any unacceptable behavior to [aafaque.tabish@gmail.com](mailto:aafaque.tabish@gmail.com).
 
 ## Contact
 
-If you have any questions or need further assistance, feel free to contact the project maintainer at [maintainer-email@example.com](mailto:maintainer-email@example.com).
+If you have any questions or need further assistance, feel free to contact the project maintainer at [aafaque.tabish@gmail.com](mailto:aafaque.tabish@gmail.com).
 
 We appreciate your contributions!
