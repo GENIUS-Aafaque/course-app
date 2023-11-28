@@ -81,10 +81,6 @@ Make sure you have the following installed:
 - **User routes:**
   - `/users/signup`, `/users/login`, `/users/courses`, `/users/courses/:courseId`, `/users/purchasedCourses` for user-related operations.
 
-## API Endpoints
-
-(Include your API endpoint details here, as mentioned in the previous response)
-
 ## Tech Details
 
 Provide more detailed information about your tech choices. Explain why you chose a particular stack, how components interact, and any other relevant technical details.
