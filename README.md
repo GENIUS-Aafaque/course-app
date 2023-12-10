@@ -1,6 +1,6 @@
-# Course Selling App
+# COURZERO - Learn from zero
 
-The Course Selling App is a full-stack web application that enables users to buy and sell courses. It provides a user-friendly interface for managing courses, user authentication, and facilitating course purchases.
+COURZERO is a full-stack course selling web application that enables users to buy and sell courses. It provides a user-friendly interface for managing courses, user authentication, and facilitating course purchases.
 
 ## Features
 
