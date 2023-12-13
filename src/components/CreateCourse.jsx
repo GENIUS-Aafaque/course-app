@@ -10,7 +10,7 @@ function CreateCourse() {
     const [course, setCourse] = React.useState({
         title: "",
         description: "",
-        imgLink: "",
+        imageLink: "",
         price: "",
     });
 
@@ -29,7 +29,7 @@ function CreateCourse() {
         setCourse({
             title: "",
             description: "",
-            imgLink: "",
+            imageLink: "",
             price: "",
         });
         alert("Course Created Succeccfully");
@@ -83,8 +83,8 @@ function CreateCourse() {
                         label="Image Link"
                         variant="outlined"
                         type={"text"}
-                        name="imgLink"
-                        value={course.imgLink}
+                        name="imageLink"
+                        value={course.imageLink}
                         onChange={handleInputChange}
                     />
                     <br />

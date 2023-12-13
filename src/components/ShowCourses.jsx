@@ -68,7 +68,7 @@ function ShowCourses() {
                                   key={c.id}
                                   title={c.title}
                                   description={c.description}
-                                  imgLink={c.imgLink}
+                                  imageLink={c.imageLink}
                                   price={c.price}
                               />
                           );
@@ -85,7 +85,7 @@ function Course(props) {
             <Typography variant="h6">{props.title}</Typography>
             <br />
             <Typography variant="subtitle">{props.description}</Typography>
-            {props.imgLink ? <img src={props.imgLink} /> : null}
+            {props.imageLink ? <img src={props.imageLink} /> : null}
             <br />
             <Typography variant="subtitle">
                 Price : Rs. {props.price}
