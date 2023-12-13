@@ -1,8 +1,10 @@
 const express = require('express');
 const app = express();
 const jwt = require('jsonwebtoken');
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const cors = require('cors');;
 
+app.use(cors());
 app.use(express.json());
 
 const SECRET = "S3cr31-keY";
