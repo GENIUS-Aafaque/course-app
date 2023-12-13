@@ -91,6 +91,10 @@ app.post('/admin/login', async (req, res) => {
     }
 });
 
+app.get('/admin/me', authenticateJwt, (req, res) => {
+    res.json({ username: req.user.username })
+})
+
 app.post('/admin/courses', authenticateJwt, async (req, res) => {
     // logic to create a course
     const newCourse = new Course(req.body);
