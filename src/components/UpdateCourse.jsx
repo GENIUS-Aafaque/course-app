@@ -62,7 +62,7 @@ function CourseCard() {
                 <Typography variant="h6">{course.title}</Typography>
                 <br />
                 <Typography variant="subtitle">{course.description}</Typography>
-                {course.imgLink ? <img src={course.imgLink} /> : null}
+                {course.imageLink ? <img src={course.imageLink} /> : null}
                 <br />
                 <Typography variant="subtitle">
                     Price : Rs. {course.price}
@@ -125,8 +125,8 @@ function UpdateCourseCard(props) {
                         label="Image Link"
                         variant="outlined"
                         type={"text"}
-                        name="imgLink"
-                        value={course.imgLink}
+                        name="imageLink"
+                        value={course.imageLink}
                         onChange={(e) => {
                             setCourse((oldValue) => {
                                 return {
@@ -188,7 +188,7 @@ const courseState = atom({
     default: {
         title: "",
         description: "",
-        imgLink: "",
+        imageLink: "",
         price: 0,
     },
 });
