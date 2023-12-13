@@ -1,6 +1,6 @@
-# Course Selling App
+# COURZERO - Learn from zero
 
-The Course Selling App is a full-stack web application that enables users to buy and sell courses. It provides a user-friendly interface for managing courses, user authentication, and facilitating course purchases.
+COURZERO is a full-stack course selling web application that enables users to buy and sell courses. It provides a user-friendly interface for managing courses, user authentication, and facilitating course purchases.
 
 ## Features
 
@@ -88,3 +88,14 @@ Provide more detailed information about your tech choices. Explain why you chose
 ## Contributing
 
 Feel free to contribute to this project by opening issues or submitting pull requests. Follow the [CONTRIBUTING.md](CONTRIBUTING.md) guidelines.
+
+# Acknowledgments
+
+This project draws inspiration from concepts and structures covered in a course assignment. While the course served as a learning medium, all implementations and customizations with regards to the codebase have been done independently.
+
+## Original Course Assignment
+
+The course assignment that inspired this project can be found in the [course repository](https://github.com/100xDevs-hkirat/all-assignments/blob/main/week-2/Week-2-Assignments/02-nodejs/todoServer.js) and copy of [my solutions](https://github.com/GENIUS-Aafaque/HKirat-FullStack/blob/main/week-2/Week-2-Assignments/02-nodejs/todoServer.js). They provided valuable insights and served as a foundation for the development process.
+
+I express my appreciation to the course instructor[Harkirat Singh](https://github.com/100xDevs-hkirat) for creating educational content that contributed to the development of this project.
+
