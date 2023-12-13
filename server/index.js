@@ -38,6 +38,7 @@ const adminSchema = new mongoose.Schema({
 });
 
 const courseSchema = new mongoose.Schema({
+    id: Number,
     title: String,
     description: String,
     price: Number,
@@ -98,6 +99,7 @@ app.get('/admin/me', authenticateJwt, (req, res) => {
 app.post('/admin/courses', authenticateJwt, async (req, res) => {
     // logic to create a course
     const newCourse = new Course(req.body);
+    newCourse.id = Math.floor(Math.random() * 1000);
     await newCourse.save();
     res.json({ message: 'Course created successfully', courseId: newCourse.id });
 });
@@ -105,7 +107,7 @@ app.post('/admin/courses', authenticateJwt, async (req, res) => {
 app.put('/admin/courses/:courseId', authenticateJwt, async (req, res) => {
     // logic to edit a course
     try {
-        const course = await Course.findByIdAndUpdate(req.params.courseId, req.body, { new: true });
+        const course = await Course.findOneAndUpdate({ "id": req.params.courseId }, req.body, { new: true });
         if (course) {
             res.json({ message: 'Course updated successfully' });
         } else {
