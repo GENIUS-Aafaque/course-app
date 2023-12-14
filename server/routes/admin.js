@@ -63,14 +63,14 @@ router.put('/courses/:courseId', authenticateJwt, async (req, res) => {
 router.get('/courses', authenticateJwt, async (req, res) => {
     // logic to get all courses
     const courses = await Course.find({});
-    res.send({ courses });
+    res.json({ courses });
 });
 
 router.get('/course/:courseId', authenticateJwt, async (req, res) => {
     // logic to get course by id
     const courseId = req.params.courseId;
     const course = await Course.findById(courseId);
-    res.send({ course });
+    res.json({ course });
 });
 
 module.exports = router
