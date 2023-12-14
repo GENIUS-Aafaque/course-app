@@ -62,16 +62,8 @@ function ShowCourses() {
                 }}
             >
                 {courses.length !== 0
-                    ? courses.map((c) => {
-                          return (
-                              <Course
-                                  key={c.id}
-                                  title={c.title}
-                                  description={c.description}
-                                  imageLink={c.imageLink}
-                                  price={c.price}
-                              />
-                          );
+                    ? courses.map((course) => {
+                          return <Course course={course} />;
                       })
                     : "No courses found :("}
             </div>
@@ -79,16 +71,20 @@ function ShowCourses() {
     );
 }
 
-function Course(props) {
+function Course({ course }) {
     return (
         <Card variant="outlined" style={{ width: 300, padding: 12 }}>
-            <Typography variant="h6">{props.title}</Typography>
+            <Typography variant="h6" textAlign={"center"}>
+                {course.title}
+            </Typography>
             <br />
-            <Typography variant="subtitle">{props.description}</Typography>
-            {props.imageLink ? <img src={props.imageLink} /> : null}
+            <Typography variant="subtitle1">{course.description}</Typography>
+            {course.imageLink ? (
+                <img src={course.imageLink} style={{ width: 300 }} />
+            ) : null}
             <br />
-            <Typography variant="subtitle">
-                Price : Rs. {props.price}
+            <Typography variant="subtitle1">
+                Price : Rs. {course.price}
             </Typography>
         </Card>
     );
