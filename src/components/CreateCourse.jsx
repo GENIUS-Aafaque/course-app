@@ -22,19 +22,22 @@ function CreateCourse() {
     };
 
     function createCourse() {
-        axios.post("http://localhost:3000/admin/courses", course, {
-            headers: {
-                authorization: "Bearer " + localStorage.getItem("token"),
-            },
-        });
-        setCourse({
-            title: "",
-            description: "",
-            imageLink: "",
-            price: "",
-            published: true,
-        });
-        alert("Course Created Succeccfully");
+        axios
+            .post("http://localhost:3000/admin/courses", course, {
+                headers: {
+                    authorization: "Bearer " + localStorage.getItem("token"),
+                },
+            })
+            .then(() => {
+                setCourse({
+                    title: "",
+                    description: "",
+                    imageLink: "",
+                    price: "",
+                    published: true,
+                });
+                alert("Course Created Succeccfully");
+            });
     }
 
     return (

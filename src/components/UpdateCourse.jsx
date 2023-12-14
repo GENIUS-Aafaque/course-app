@@ -159,18 +159,21 @@ function UpdateCourseCard(props) {
                     <Button
                         variant="contained"
                         onClick={() => {
-                            axios.put(
-                                `http://localhost:3000/admin/courses/${props.courseId}`,
-                                course,
-                                {
-                                    headers: {
-                                        authorization:
-                                            "Bearer " +
-                                            localStorage.getItem("token"),
-                                    },
-                                }
-                            );
-                            alert("Course Updated Succeccfully");
+                            axios
+                                .put(
+                                    `http://localhost:3000/admin/courses/${props.courseId}`,
+                                    course,
+                                    {
+                                        headers: {
+                                            authorization:
+                                                "Bearer " +
+                                                localStorage.getItem("token"),
+                                        },
+                                    }
+                                )
+                                .then(() => {
+                                    alert("Course Updated Succeccfully");
+                                });
                         }}
                     >
                         Update Course
