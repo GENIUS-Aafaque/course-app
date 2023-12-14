@@ -12,6 +12,7 @@ function CreateCourse() {
         description: "",
         imageLink: "",
         price: "",
+        published: true,
     });
 
     const handleInputChange = (e) => {
@@ -31,6 +32,7 @@ function CreateCourse() {
             description: "",
             imageLink: "",
             price: "",
+            published: true,
         });
         alert("Course Created Succeccfully");
     }
