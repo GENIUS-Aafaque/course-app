@@ -15,13 +15,13 @@ function UpdateCourse() {
 
     useEffect(() => {
         axios
-            .get("http://localhost:3000/admin/courses", {
+            .get(`http://localhost:3000/admin/course/${courseId}`, {
                 headers: {
                     authorization: "Bearer " + localStorage.getItem("token"),
                 },
             })
             .then((response) => {
-                setCourse(response.data.courses.find((c) => c._id == courseId));
+                setCourse(response.data.course);
             })
             .catch(() => console.log("error in fetching"));
     }, [courseId]);
