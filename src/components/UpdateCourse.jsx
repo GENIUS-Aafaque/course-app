@@ -56,7 +56,7 @@ function UpdateCourse() {
 
 function CourseCard() {
     const course = useRecoilValue(courseState);
-    if (course && course.title) {
+    if (course) {
         return (
             <Card variant="outlined" style={{ width: 300, padding: 12 }}>
                 <Typography variant="h6">{course.title}</Typography>
@@ -80,7 +80,7 @@ function CourseCard() {
 
 function UpdateCourseCard(props) {
     const [course, setCourse] = useRecoilState(courseState);
-    if (course && course.title) {
+    if (course) {
         return (
             <div>
                 <Card variant="outlined" style={{ padding: 20, width: 300 }}>
@@ -185,10 +185,5 @@ export default UpdateCourse;
 
 const courseState = atom({
     key: "courseState",
-    default: {
-        title: "",
-        description: "",
-        imageLink: "",
-        price: 0,
-    },
+    default: undefined,
 });
