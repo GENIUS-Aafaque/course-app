@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Card, Typography } from "@mui/material";
+import { Card, Typography, Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 function ShowCourses() {
     const [courses, setCourses] = useState([]);
@@ -72,10 +73,11 @@ function ShowCourses() {
 }
 
 function Course({ course }) {
+    const navigate = useNavigate();
     return (
         <Card variant="outlined" style={{ width: 300, padding: 12 }}>
             <Typography variant="h6" textAlign={"center"}>
-                {course.title}
+                <u>{course.title}</u>
             </Typography>
             <br />
             <Typography variant="subtitle1">{course.description}</Typography>
@@ -86,6 +88,16 @@ function Course({ course }) {
             <Typography variant="subtitle1">
                 Price : Rs. {course.price}
             </Typography>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+                <Button
+                    variant="contained"
+                    onClick={() => {
+                        navigate(`/course/${course._id}`);
+                    }}
+                >
+                    Edit
+                </Button>
+            </div>
         </Card>
     );
 }

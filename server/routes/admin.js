@@ -41,15 +41,14 @@ router.get('/me', authenticateJwt, (req, res) => {
 router.post('/courses', authenticateJwt, async (req, res) => {
     // logic to create a course
     const newCourse = new Course(req.body);
-    newCourse.id = Math.floor(Math.random() * 1000);
     await newCourse.save();
-    res.json({ message: 'Course created successfully', courseId: newCourse.id });
+    res.json({ message: 'Course created successfully', courseId: newCourse._id });
 });
 
 router.put('/courses/:courseId', authenticateJwt, async (req, res) => {
     // logic to edit a course
     try {
-        const course = await Course.findOneAndUpdate({ "id": req.params.courseId }, req.body, { new: true });
+        const course = await Course.findByIdAndUpdate(req.params.courseId, req.body, { new: true });
         if (course) {
             res.json({ message: 'Course updated successfully' });
         } else {

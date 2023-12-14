@@ -21,7 +21,7 @@ function UpdateCourse() {
                 },
             })
             .then((response) => {
-                setCourse(response.data.courses.find((c) => c.id == courseId));
+                setCourse(response.data.courses.find((c) => c._id == courseId));
             })
             .catch(() => console.log("error in fetching"));
     }, [courseId]);
