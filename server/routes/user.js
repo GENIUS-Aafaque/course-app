@@ -40,6 +40,13 @@ router.get('/courses', authenticateJwt, async (req, res) => {
     res.json({ courses });
 });
 
+router.get('/course/:courseId', authenticateJwt, async (req, res) => {
+    // logic to get course by id
+    const courseId = req.params.courseId;
+    const course = await Course.findById(courseId);
+    res.send({ course });
+});
+
 router.post('/courses/:courseId', authenticateJwt, async (req, res) => {
     // logic to purchase a course
     try {
