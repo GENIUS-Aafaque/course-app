@@ -1,74 +1,49 @@
-import React from "react";
-import Card from "@mui/material/Card";
+import { Grid, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
-import { Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-/// This is the landing page. You need to add a link to the login page here.
-/// Maybe also check from the backend if the user is already logged in and then show them a logout button
-/// Logging a user out is as simple as deleting the token from the local storage.
-function Landing() {
+export const Landing = () => {
     const navigate = useNavigate();
-
     return (
-        <div
-            style={{
-                height: "100vh",
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                backgroundColor: "#eeeeee",
-            }}
-        >
-            <Card
-                variant="outlined"
-                style={{
-                    width: 400,
-                    padding: 60,
-                    marginTop: -100,
-                    outlineWidth: 4,
-                }}
-            >
-                <Typography
-                    variant="h4"
-                    style={{ flex: "1", color: "#aaaaaa" }}
-                >
-                    <u>Welcome to COURZERO!</u>
-                </Typography>
-                <br />
-                <br />
-                <br />
-                <br />
-                <div
-                    style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        gap: 64,
-                    }}
-                >
-                    <Button
-                        variant="contained"
-                        size="large"
-                        onClick={() => {
-                            navigate("/register");
-                        }}
-                    >
-                        Register
-                    </Button>
-                    <Button
-                        variant="contained"
-                        size="large"
-                        onClick={() => {
-                            navigate("/login");
-                        }}
-                    >
-                        Login
-                    </Button>
-                </div>
-            </Card>
+        <div>
+            <Grid container style={{ padding: "5vw" }}>
+                <Grid item xs={12} md={6} lg={6}>
+                    <div style={{ marginTop: 100 }}>
+                        <Typography variant={"h2"}>Courzero Admin</Typography>
+                        <Typography variant={"h5"}>
+                            A place to learn from Zero and become a Hero
+                        </Typography>
+                        <div style={{ display: "flex", marginTop: 20 }}>
+                            <div style={{ marginRight: 10 }}>
+                                <Button
+                                    size={"large"}
+                                    variant={"contained"}
+                                    onClick={() => {
+                                        navigate("/signup");
+                                    }}
+                                >
+                                    Signup
+                                </Button>
+                            </div>
+                            <div>
+                                <Button
+                                    size={"large"}
+                                    variant={"contained"}
+                                    onClick={() => {
+                                        navigate("/signin");
+                                    }}
+                                >
+                                    Signin
+                                </Button>
+                            </div>
+                        </div>
+                    </div>
+                    <div></div>
+                </Grid>
+                <Grid item xs={12} md={6} lg={6} style={{ marginTop: 20 }}>
+                    <img src={"/class.jpg"} width={"100%"} />
+                </Grid>
+            </Grid>
         </div>
     );
-}
-
-export default Landing;
+};
