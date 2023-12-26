@@ -56,26 +56,34 @@ function UpdateCourse() {
 function TitleHeader() {
     const course = useRecoilValue(courseState);
     const title = course ? course.title : null;
-    return (
-        <div
-            style={{
-                height: 250,
-                width: "100%",
-                backgroundColor: "#212121",
-                display: "grid",
-                placeItems: "center",
-                marginBottom: -250,
-                zIndex: -1,
-            }}
-        >
-            <Typography
-                variant="h3"
-                style={{ color: "white", fontWeight: 600 }}
+    if (course) {
+        return (
+            <div
+                style={{
+                    height: 250,
+                    width: "100%",
+                    backgroundColor: "#212121",
+                    display: "grid",
+                    placeItems: "center",
+                    marginBottom: -250,
+                    zIndex: -1,
+                }}
             >
-                {title}
+                <Typography
+                    variant="h3"
+                    style={{ color: "white", fontWeight: 600 }}
+                >
+                    {title}
+                </Typography>
+            </div>
+        );
+    } else {
+        return (
+            <Typography align="center" variant="h4" style={{ paddingTop: 100 }}>
+                No Courses Found
             </Typography>
-        </div>
-    );
+        );
+    }
 }
 
 function CourseCard() {
@@ -96,12 +104,6 @@ function CourseCard() {
                     </Typography>
                 </Card>
             </div>
-        );
-    } else {
-        return (
-            <Typography align="center" variant="h4" style={{ paddingTop: 100 }}>
-                No Courses Found
-            </Typography>
         );
     }
 }
