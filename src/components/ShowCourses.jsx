@@ -13,8 +13,6 @@ function ShowCourses() {
         axios
             .get("http://localhost:3000/admin/courses", {
                 headers: {
-                    username: "sameer",
-                    password: 123,
                     authorization: "Bearer " + localStorage.getItem("token"),
                 },
             })
@@ -26,8 +24,6 @@ function ShowCourses() {
             axios
                 .get("http://localhost:3000/admin/courses", {
                     headers: {
-                        username: "sameer",
-                        password: 123,
                         authorization:
                             "Bearer " + localStorage.getItem("token"),
                     },
