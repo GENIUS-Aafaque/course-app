@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { BASE_URL } from "../config.js";
 import axios from "axios";
 import { Card, Typography, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -11,7 +12,7 @@ function ShowCourses() {
 
     useEffect(() => {
         axios
-            .get("http://localhost:3000/admin/courses", {
+            .get(`${BASE_URL}/admin/courses`, {
                 headers: {
                     authorization: "Bearer " + localStorage.getItem("token"),
                 },

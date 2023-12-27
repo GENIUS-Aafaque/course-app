@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import axios from "axios";
+import { BASE_URL } from "../config.js";
 import Card from "@mui/material/Card";
 import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
 import { Typography } from "@mui/material";
-/// You need to add input boxes to take input for users to create a course.
-/// I've added one input so you understand the api to do it.
+
 function CreateCourse() {
     const [course, setCourse] = React.useState({
         title: "",
@@ -23,7 +23,7 @@ function CreateCourse() {
 
     function createCourse() {
         axios
-            .post("http://localhost:3000/admin/courses", course, {
+            .post(`${BASE_URL}/admin/courses`, course, {
                 headers: {
                     authorization: "Bearer " + localStorage.getItem("token"),
                 },

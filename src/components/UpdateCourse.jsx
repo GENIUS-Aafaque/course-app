@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { BASE_URL } from "../config.js";
 import { Card, Typography, TextField, Button, Grid } from "@mui/material";
 import { useParams } from "react-router-dom";
 import {
@@ -15,7 +16,7 @@ function UpdateCourse() {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:3000/admin/course/${courseId}`, {
+            .get(`${BASE_URL}/admin/course/${courseId}`, {
                 headers: {
                     authorization: "Bearer " + localStorage.getItem("token"),
                 },

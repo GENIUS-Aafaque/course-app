@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect } from "react";
+import { BASE_URL } from "../config.js";
 import Card from "@mui/material/Card";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -13,7 +14,7 @@ function Login() {
     const newLogin = () => {
         axios
             .post(
-                "http://localhost:3000/admin/login",
+                `${BASE_URL}/admin/login`,
                 {},
                 {
                     headers: {
