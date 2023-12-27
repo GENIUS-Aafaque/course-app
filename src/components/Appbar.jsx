@@ -40,7 +40,7 @@ function Appbar({}) {
                         <div style={{ marginRight: 10 }}>
                             <Button
                                 onClick={() => {
-                                    navigate("/addcourse");
+                                    navigate("/create-course");
                                 }}
                             >
                                 Add course
@@ -97,7 +97,7 @@ function Appbar({}) {
                         <Button
                             variant={"contained"}
                             onClick={() => {
-                                navigate("/signup");
+                                navigate("/register");
                             }}
                         >
                             Signup
@@ -107,7 +107,7 @@ function Appbar({}) {
                         <Button
                             variant={"contained"}
                             onClick={() => {
-                                navigate("/signin");
+                                navigate("/login");
                             }}
                         >
                             Signin
