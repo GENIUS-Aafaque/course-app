@@ -22,7 +22,10 @@ function Appbar({}) {
                 style={{
                     display: "flex",
                     justifyContent: "space-between",
-                    padding: 4,
+                    alignItems: "center",
+                    backgroundColor: "#dddddd",
+                    borderBottom: "2px solid #bbbbbb",
+                    padding: 8,
                     zIndex: 1,
                 }}
             >
@@ -34,20 +37,19 @@ function Appbar({}) {
                 >
                     <Typography variant={"h6"}>Coursera</Typography>
                 </div>
-
-                <div style={{ display: "flex" }}>
-                    <div style={{ marginRight: 10, display: "flex" }}>
-                        <div style={{ marginRight: 10 }}>
+                <div style={{ display: "flex", gap: 8, marginRight: 12 }}>
+                    <div style={{ display: "flex", gap: 2 }}>
+                        <div>
                             <Button
                                 onClick={() => {
-                                    navigate("/addcourse");
+                                    navigate("/create-course");
                                 }}
                             >
                                 Add course
                             </Button>
                         </div>
 
-                        <div style={{ marginRight: 10 }}>
+                        <div>
                             <Button
                                 onClick={() => {
                                     navigate("/courses");
@@ -56,7 +58,8 @@ function Appbar({}) {
                                 Courses
                             </Button>
                         </div>
-
+                    </div>
+                    <div>
                         <Button
                             variant={"contained"}
                             onClick={() => {
@@ -79,7 +82,10 @@ function Appbar({}) {
                 style={{
                     display: "flex",
                     justifyContent: "space-between",
-                    padding: 4,
+                    alignItems: "center",
+                    backgroundColor: "#dddddd",
+                    borderBottom: "2px solid #bbbbbb",
+                    padding: 8,
                     zIndex: 1,
                 }}
             >
@@ -89,15 +95,15 @@ function Appbar({}) {
                         navigate("/");
                     }}
                 >
-                    <Typography variant={"h6"}>Coursera</Typography>
+                    <Typography variant={"h6"}>COURZERO</Typography>
                 </div>
 
-                <div style={{ display: "flex" }}>
-                    <div style={{ marginRight: 10 }}>
+                <div style={{ display: "flex", gap: 8, marginRight: 12 }}>
+                    <div>
                         <Button
                             variant={"contained"}
                             onClick={() => {
-                                navigate("/signup");
+                                navigate("/register");
                             }}
                         >
                             Signup
@@ -107,7 +113,7 @@ function Appbar({}) {
                         <Button
                             variant={"contained"}
                             onClick={() => {
-                                navigate("/signin");
+                                navigate("/login");
                             }}
                         >
                             Signin
