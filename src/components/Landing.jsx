@@ -19,7 +19,7 @@ export const Landing = () => {
                                     size={"large"}
                                     variant={"contained"}
                                     onClick={() => {
-                                        navigate("/signup");
+                                        navigate("/register");
                                     }}
                                 >
                                     Signup
@@ -30,7 +30,7 @@ export const Landing = () => {
                                     size={"large"}
                                     variant={"contained"}
                                     onClick={() => {
-                                        navigate("/signin");
+                                        navigate("/login");
                                     }}
                                 >
                                     Signin
