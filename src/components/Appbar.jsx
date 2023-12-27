@@ -1,87 +1,122 @@
-import React, { useEffect, useState } from "react";
-import { Button } from "@mui/material";
-import { Typography } from "@mui/material";
+import { useSetRecoilState, useRecoilValue } from "recoil";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { Typography } from "@mui/material";
+import { Button } from "@mui/material";
+import { isUserLoading } from "../store/selectors/isUserLoading";
+import { userState } from "../store/atoms/user.js";
+import { userEmailState } from "../store/selectors/userEmail";
 
-function Appbar() {
+function Appbar({}) {
     const navigate = useNavigate();
-    const [username, setUsername] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
+    const userLoading = useRecoilValue(isUserLoading);
+    const userEmail = useRecoilValue(userEmailState);
+    const setUser = useSetRecoilState(userState);
 
-    useEffect(() => {
-        axios
-            .get("http://localhost:3000/admin/me", {
-                headers: {
-                    authorization: "Bearer " + localStorage.getItem("token"),
-                },
-            })
-            .then((response) => {
-                setUsername(response.data.username);
-            });
-        setIsLoading(false);
-    }, []);
-
-    if (isLoading) {
-        return <div></div>;
+    if (userLoading) {
+        return <></>;
     }
 
-    if (username) {
+    if (userEmail) {
         return (
             <div
                 style={{
                     display: "flex",
                     justifyContent: "space-between",
-                    padding: 12,
-                    backgroundColor: "#dddddd",
-                    borderBottom: "2px solid #bbbbbb",
+                    padding: 4,
+                    zIndex: 1,
                 }}
             >
-                <div>
-                    <Typography variant="h4">COURZERO</Typography>
+                <div
+                    style={{ marginLeft: 10, cursor: "pointer" }}
+                    onClick={() => {
+                        navigate("/");
+                    }}
+                >
+                    <Typography variant={"h6"}>Coursera</Typography>
                 </div>
-                <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                    <Typography variant="h6">{username}</Typography>
-                    <Button
-                        variant="contained"
-                        onClick={() => {
-                            window.location.href = "/";
-                            localStorage.setItem("token", null);
-                        }}
-                    >
-                        Log Out
-                    </Button>
+
+                <div style={{ display: "flex" }}>
+                    <div style={{ marginRight: 10, display: "flex" }}>
+                        <div style={{ marginRight: 10 }}>
+                            <Button
+                                onClick={() => {
+                                    navigate("/addcourse");
+                                }}
+                            >
+                                Add course
+                            </Button>
+                        </div>
+
+                        <div style={{ marginRight: 10 }}>
+                            <Button
+                                onClick={() => {
+                                    navigate("/courses");
+                                }}
+                            >
+                                Courses
+                            </Button>
+                        </div>
+
+                        <Button
+                            variant={"contained"}
+                            onClick={() => {
+                                localStorage.setItem("token", null);
+                                setUser({
+                                    isLoading: false,
+                                    userEmail: null,
+                                });
+                            }}
+                        >
+                            Logout
+                        </Button>
+                    </div>
+                </div>
+            </div>
+        );
+    } else {
+        return (
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    padding: 4,
+                    zIndex: 1,
+                }}
+            >
+                <div
+                    style={{ marginLeft: 10, cursor: "pointer" }}
+                    onClick={() => {
+                        navigate("/");
+                    }}
+                >
+                    <Typography variant={"h6"}>Coursera</Typography>
+                </div>
+
+                <div style={{ display: "flex" }}>
+                    <div style={{ marginRight: 10 }}>
+                        <Button
+                            variant={"contained"}
+                            onClick={() => {
+                                navigate("/signup");
+                            }}
+                        >
+                            Signup
+                        </Button>
+                    </div>
+                    <div>
+                        <Button
+                            variant={"contained"}
+                            onClick={() => {
+                                navigate("/signin");
+                            }}
+                        >
+                            Signin
+                        </Button>
+                    </div>
                 </div>
             </div>
         );
     }
-
-    return (
-        <div
-            style={{
-                display: "flex",
-                justifyContent: "space-between",
-                padding: 12,
-                backgroundColor: "#dddddd",
-                borderBottom: "2px solid #bbbbbb",
-            }}
-        >
-            <div>
-                <Typography variant="h4">COURZERO</Typography>
-            </div>
-            <div style={{ display: "flex", gap: 8 }}>
-                <Button
-                    variant="contained"
-                    onClick={() => navigate("/register")}
-                >
-                    Sign Up
-                </Button>
-                <Button variant="contained" onClick={() => navigate("/login")}>
-                    Sign In
-                </Button>
-            </div>
-        </div>
-    );
 }
 
 export default Appbar;
