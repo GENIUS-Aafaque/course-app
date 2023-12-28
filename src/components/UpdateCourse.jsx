@@ -8,11 +8,22 @@ import {
     useRecoilValue,
     useSetRecoilState,
     atom,
+    useRecoilCallback,
 } from "recoil";
+import { courseState } from "../store/atoms/course.js";
+import {
+    courseTitle,
+    courseDescription,
+    courseImage,
+    coursePrice,
+    courseDetails,
+    isCourseLoading,
+} from "../store/selectors/course.js";
 
 function UpdateCourse() {
     const setCourse = useSetRecoilState(courseState);
     const { courseId } = useParams();
+    const courseLoading = useRecoilValue(isCourseLoading);
 
     useEffect(() => {
         axios
@@ -22,10 +33,19 @@ function UpdateCourse() {
                 },
             })
             .then((response) => {
-                setCourse(response.data.course);
+                setCourse({
+                    courseLoading: false,
+                    course: response.data.course,
+                });
             })
-            .catch(() => console.log("error in fetching"));
+            .catch(() => {
+                setCourse({ courseLoading: false, course: null });
+            });
     }, [courseId]);
+
+    if (courseLoading) {
+        return <></>;
+    }
 
     return (
         <div
@@ -55,9 +75,9 @@ function UpdateCourse() {
 }
 
 function TitleHeader() {
-    const course = useRecoilValue(courseState);
-    const title = course ? course.title : null;
-    if (course) {
+    const title = useRecoilValue(courseTitle);
+
+    if (title) {
         return (
             <div
                 style={{
@@ -88,20 +108,21 @@ function TitleHeader() {
 }
 
 function CourseCard() {
-    const course = useRecoilValue(courseState);
-    if (course) {
+    const title = useRecoilValue(courseTitle);
+    const description = useRecoilValue(courseDescription);
+    const imageLink = useRecoilValue(courseImage);
+    const price = useRecoilValue(coursePrice);
+    if (title) {
         return (
             <div style={{ display: "flex", justifyContent: "center" }}>
                 <Card variant="outlined" style={{ width: 300, padding: 12 }}>
-                    <Typography variant="h6">{course.title}</Typography>
+                    <Typography variant="h6">{title}</Typography>
+                    <br />
+                    <Typography variant="subtitle">{description}</Typography>
+                    {imageLink ? <img src={imageLink} /> : null}
                     <br />
                     <Typography variant="subtitle">
-                        {course.description}
-                    </Typography>
-                    {course.imageLink ? <img src={course.imageLink} /> : null}
-                    <br />
-                    <Typography variant="subtitle">
-                        Price : Rs. {course.price}
+                        Price : Rs. {price}
                     </Typography>
                 </Card>
             </div>
@@ -111,7 +132,36 @@ function CourseCard() {
 
 function UpdateCourseCard(props) {
     const [course, setCourse] = useRecoilState(courseState);
-    if (course) {
+    const [courseDetails, setCourseDetails] = useState(course.course);
+
+    function courseDetailsUpdate(e) {
+        setCourseDetails((oldValue) => {
+            return {
+                ...oldValue,
+                [e.target.name]: e.target.value,
+            };
+        });
+    }
+
+    const courseUpdateCallback = async () => {
+        await axios.put(
+            `http://localhost:3000/admin/courses/${props.courseId}`,
+            courseDetails,
+            {
+                headers: {
+                    authorization: "Bearer " + localStorage.getItem("token"),
+                },
+            }
+        );
+
+        setCourse({
+            isLoading: false,
+            course: courseDetails,
+        });
+        alert("Course Updated Successfully");
+    };
+
+    if (courseDetails) {
         return (
             <div style={{ display: "flex", justifyContent: "center" }}>
                 <Card
@@ -128,15 +178,8 @@ function UpdateCourseCard(props) {
                         variant="outlined"
                         type={"text"}
                         name="title"
-                        value={course.title}
-                        onChange={(e) => {
-                            setCourse((oldValue) => {
-                                return {
-                                    ...oldValue,
-                                    [e.target.name]: e.target.value,
-                                };
-                            });
-                        }}
+                        value={courseDetails.title}
+                        onChange={courseDetailsUpdate}
                     />
                     <br />
                     <br />
@@ -146,15 +189,8 @@ function UpdateCourseCard(props) {
                         variant="outlined"
                         type={"text"}
                         name="description"
-                        value={course.description}
-                        onChange={(e) => {
-                            setCourse((oldValue) => {
-                                return {
-                                    ...oldValue,
-                                    [e.target.name]: e.target.value,
-                                };
-                            });
-                        }}
+                        value={courseDetails.description}
+                        onChange={courseDetailsUpdate}
                     />
                     <br />
                     <br />
@@ -164,15 +200,8 @@ function UpdateCourseCard(props) {
                         variant="outlined"
                         type={"text"}
                         name="imageLink"
-                        value={course.imageLink}
-                        onChange={(e) => {
-                            setCourse((oldValue) => {
-                                return {
-                                    ...oldValue,
-                                    [e.target.name]: e.target.value,
-                                };
-                            });
-                        }}
+                        value={courseDetails.imageLink}
+                        onChange={courseDetailsUpdate}
                     />
                     <br />
                     <br />
@@ -182,38 +211,12 @@ function UpdateCourseCard(props) {
                         variant="outlined"
                         type={"number"}
                         name="price"
-                        value={course.price}
-                        onChange={(e) => {
-                            setCourse((oldValue) => {
-                                return {
-                                    ...oldValue,
-                                    [e.target.name]: e.target.value,
-                                };
-                            });
-                        }}
+                        value={courseDetails.price}
+                        onChange={courseDetailsUpdate}
                     />
                     <br />
                     <br />
-                    <Button
-                        variant="contained"
-                        onClick={() => {
-                            axios
-                                .put(
-                                    `http://localhost:3000/admin/courses/${props.courseId}`,
-                                    course,
-                                    {
-                                        headers: {
-                                            authorization:
-                                                "Bearer " +
-                                                localStorage.getItem("token"),
-                                        },
-                                    }
-                                )
-                                .then(() => {
-                                    alert("Course Updated Successfully");
-                                });
-                        }}
-                    >
+                    <Button variant="contained" onClick={courseUpdateCallback}>
                         Update Course
                     </Button>
                 </Card>
@@ -223,8 +226,3 @@ function UpdateCourseCard(props) {
 }
 
 export default UpdateCourse;
-
-const courseState = atom({
-    key: "courseState",
-    default: undefined,
-});
