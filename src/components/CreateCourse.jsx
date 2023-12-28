@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../config.js";
 import Card from "@mui/material/Card";
@@ -7,7 +7,7 @@ import { TextField } from "@mui/material";
 import { Typography } from "@mui/material";
 
 function CreateCourse() {
-    const [course, setCourse] = React.useState({
+    const [course, setCourse] = useState({
         title: "",
         description: "",
         imageLink: "",
