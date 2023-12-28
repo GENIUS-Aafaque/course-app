@@ -210,7 +210,7 @@ function UpdateCourseCard(props) {
                                     }
                                 )
                                 .then(() => {
-                                    alert("Course Updated Succeccfully");
+                                    alert("Course Updated Successfully");
                                 });
                         }}
                     >
