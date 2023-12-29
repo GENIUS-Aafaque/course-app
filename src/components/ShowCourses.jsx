@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { BASE_URL } from "../config.js";
 import axios from "axios";
 import { Card, Typography, Button } from "@mui/material";
@@ -6,9 +6,6 @@ import { useNavigate } from "react-router-dom";
 
 function ShowCourses() {
     const [courses, setCourses] = useState([]);
-
-    // Add code to fetch courses from the server
-    // and set it in the courses state variable.
 
     useEffect(() => {
         axios
