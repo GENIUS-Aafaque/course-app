@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../config.js";
 import Card from "@mui/material/Card";
 import Button from "@mui/material/Button";
@@ -9,6 +10,7 @@ import { Typography } from "@mui/material";
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     const newLogin = () => {
         axios
@@ -26,7 +28,7 @@ function Login() {
                 setEmail("");
                 setPassword("");
                 localStorage.setItem("token", response.data.token);
-                window.location.href = "/courses";
+                navigate("/courses");
             });
     };
 
