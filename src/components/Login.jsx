@@ -2,14 +2,17 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../config.js";
+import { userState } from "../store/atoms/user.js";
 import Card from "@mui/material/Card";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { Typography } from "@mui/material";
+import { useSetRecoilState } from "recoil";
 
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const setUser = useSetRecoilState(userState);
     const navigate = useNavigate();
 
     const newLogin = () => {
@@ -28,6 +31,10 @@ function Login() {
                 setEmail("");
                 setPassword("");
                 localStorage.setItem("token", response.data.token);
+                setUser({
+                    userEmail: email,
+                    isLoading: false,
+                });
                 navigate("/courses");
             });
     };
