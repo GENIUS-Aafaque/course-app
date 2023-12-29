@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { BASE_URL } from "../config.js";
 import { userState } from "../store/atoms/user.js";
 import Card from "@mui/material/Card";
@@ -22,14 +22,12 @@ function Register() {
                 password: password,
             })
             .then((response) => {
-                setEmail("");
-                setPassword("");
                 localStorage.setItem("token", response.data.token);
                 setUser({
                     userEmail: email,
                     isLoading: false,
                 });
-                useNavigate("/courses");
+                navigate("/courses");
             });
     };
 
