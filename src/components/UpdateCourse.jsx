@@ -19,6 +19,7 @@ import {
     courseDetails,
     isCourseLoading,
 } from "../store/selectors/course.js";
+import { Loading } from "./Loading.jsx";
 
 function UpdateCourse() {
     const setCourse = useSetRecoilState(courseState);
@@ -44,7 +45,7 @@ function UpdateCourse() {
     }, [courseId]);
 
     if (courseLoading) {
-        return <></>;
+        return <Loading />;
     }
 
     return (

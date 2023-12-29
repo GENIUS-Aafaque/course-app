@@ -5,6 +5,7 @@ import { Button } from "@mui/material";
 import { isUserLoading } from "../store/selectors/isUserLoading";
 import { userState } from "../store/atoms/user.js";
 import { userEmailState } from "../store/selectors/userEmail";
+import { Loading } from "./Loading.jsx";
 
 function Appbar({}) {
     const navigate = useNavigate();
@@ -13,7 +14,7 @@ function Appbar({}) {
     const setUser = useSetRecoilState(userState);
 
     if (userLoading) {
-        return <></>;
+        return <Loading />;
     }
 
     if (userEmail) {

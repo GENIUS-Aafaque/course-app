@@ -3,6 +3,7 @@ import { BASE_URL } from "../config.js";
 import axios from "axios";
 import { Card, Typography, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { Loading } from "./Loading.jsx";
 
 function ShowCourses() {
     const [courses, setCourses] = useState([]);
@@ -33,32 +34,36 @@ function ShowCourses() {
         }, 1000);
     }, []);
 
-    return (
-        <div>
-            <Typography
-                align="center"
-                variant="h4"
-                style={{ paddingTop: 24, paddingBottom: 20 }}
-            >
-                Show Courses Page
-            </Typography>
+    if (courses) {
+        return (
+            <div>
+                <Typography
+                    align="center"
+                    variant="h4"
+                    style={{ paddingTop: 24, paddingBottom: 20 }}
+                >
+                    Show Courses Page
+                </Typography>
 
-            <div
-                style={{
-                    display: "flex",
-                    flexWrap: "wrap",
-                    gap: 24,
-                    justifyContent: "center",
-                }}
-            >
-                {courses.length !== 0
-                    ? courses.map((course) => {
-                          return <Course course={course} />;
-                      })
-                    : "No courses found :("}
+                <div
+                    style={{
+                        display: "flex",
+                        flexWrap: "wrap",
+                        gap: 24,
+                        justifyContent: "center",
+                    }}
+                >
+                    {courses.length !== 0
+                        ? courses.map((course) => {
+                              return <Course course={course} />;
+                          })
+                        : "No courses found :("}
+                </div>
             </div>
-        </div>
-    );
+        );
+    } else {
+        return <Loading />;
+    }
 }
 
 function Course({ course }) {
