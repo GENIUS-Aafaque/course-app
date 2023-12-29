@@ -1,16 +1,19 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { BASE_URL } from "../config.js";
+import { userState } from "../store/atoms/user.js";
 import Card from "@mui/material/Card";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
 
 function Register() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
+    const setUser = useSetRecoilState(userState);
 
     const newRegister = () => {
         axios
@@ -22,6 +25,10 @@ function Register() {
                 setEmail("");
                 setPassword("");
                 localStorage.setItem("token", response.data.token);
+                setUser({
+                    userEmail: email,
+                    isLoading: false,
+                });
                 useNavigate("/courses");
             });
     };
