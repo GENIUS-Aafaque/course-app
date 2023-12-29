@@ -1,15 +1,14 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { BASE_URL } from "../config.js";
 import Card from "@mui/material/Card";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { Typography } from "@mui/material";
 
-/// File is incomplete. You need to add input boxes to take input for users to register.
 function Login() {
-    const [email, setEmail] = React.useState("");
-    const [password, setPassword] = React.useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
     const newLogin = () => {
         axios
