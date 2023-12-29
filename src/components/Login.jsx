@@ -44,14 +44,7 @@ function Login() {
         );
     } else {
         return (
-            <div
-                style={{
-                    width: "100%",
-                    height: "100vh",
-                    backgroundColor: "#eeeeee",
-                    paddingTop: "20vh",
-                }}
-            >
+            <div style={{ paddingTop: "20vh" }}>
                 <center>
                     <Typography variant="h5">
                         Welcome back! Login here.

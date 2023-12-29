@@ -41,18 +41,10 @@ function CreateCourse() {
     }
 
     return (
-        <div
-            style={{
-                width: "100%",
-                height: "100vh",
-                backgroundColor: "#eeeeee",
-                display: "grid",
-                placeItems: "center",
-            }}
-        >
+        <div style={{ display: "grid", placeItems: "center" }}>
             <div
                 style={{
-                    marginTop: -100,
+                    marginTop: 100,
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",

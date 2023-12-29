@@ -48,12 +48,7 @@ function UpdateCourse() {
     }
 
     return (
-        <div
-            style={{
-                backgroundColor: "#eeeeee",
-                height: "100vh",
-            }}
-        >
+        <div>
             <TitleHeader />
             <br />
             <Grid

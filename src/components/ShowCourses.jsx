@@ -34,12 +34,7 @@ function ShowCourses() {
     }, []);
 
     return (
-        <div
-            style={{
-                backgroundColor: "#eeeeee",
-                height: "100vh",
-            }}
-        >
+        <div>
             <Typography
                 align="center"
                 variant="h4"
