@@ -5,10 +5,12 @@ import Card from "@mui/material/Card";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     const newRegister = () => {
         axios
@@ -20,7 +22,7 @@ function Register() {
                 setEmail("");
                 setPassword("");
                 localStorage.setItem("token", response.data.token);
-                window.location.href = "/courses";
+                useNavigate("/courses");
             });
     };
 
